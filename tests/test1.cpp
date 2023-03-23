@@ -64,9 +64,9 @@ TEST(Transaction, SimpleTest) {
     Account ac2(2, 300);
     tr.set_fee(10);
     EXPECT_EQ(tr.fee(), 10);
-    EXPECT_THROW(tr.Make(ac1, ac1, 0), std::logic_error);
+    EXPECT_THROW(tr.Make(ac1, ac2, 90), std::logic_error);
     EXPECT_THROW(tr.Make(ac1, ac2, -5), std::invalid_argument);
-    EXPECT_THROW(tr.Make(ac1, ac2, 100), std::logic_error);
+    EXPECT_THROW(tr.Make(ac1, ac1, 100), std::logic_error);
     EXPECT_FALSE(tr.Make(ac1, ac2, 400));
     EXPECT_FALSE(tr.Make(ac2, ac1, 300));
     EXPECT_FALSE(tr.Make(ac2, ac1, 50));
